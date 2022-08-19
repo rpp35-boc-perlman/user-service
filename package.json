@@ -11,8 +11,8 @@
     "supertest": "^6.2.4"
   },
   "scripts": {
-    "start": "node server.js",
-    "dev": "nodemon NODE_ENV=DEV server.js",
+    "start": "node www.js",
+    "dev": "nodemon NODE_ENV=DEV www.js",
     "test": "jest /tests"
   }
 }

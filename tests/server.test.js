@@ -1,18 +1,17 @@
 const request = require('supertest');
 const express = require('express');
 
-const app = require('../server')
+const app = require('../server.js')
 
 describe('Server Heartbeat Test', () => {
 
-    afterAll( async () => {
-        app.close()
-    })
-
-    it('Should have a heartbeat', () => {
-        request(app)
-            .get('http://localhost:3300/heartbeat')
-            .expect(200)
-    }, 10000)
+    it('Should have a heartbeat', async () => {
+        try{
+            const r = await request(app).get('http://localhost:3300/heartbeat')
+            expect(r.status).toEqual(200)
+        } catch (err) {
+            console.log(err)
+        }
+    }, 5000);
 
 })
