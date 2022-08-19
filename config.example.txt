@@ -1,0 +1,4 @@
+you shoudl create your own version of config.js following this format
+
+ENV=TEST || DEV || PROD
+PORT=0000
