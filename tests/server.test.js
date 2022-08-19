@@ -5,6 +5,10 @@ const app = require('../server')
 
 describe('Server Heartbeat Test', () => {
 
+    afterAll( async () => {
+        app.close()
+    })
+
     it('Should have a heartbeat', () => {
         request(app)
             .get('http://localhost:3300/heartbeat')
