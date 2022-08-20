@@ -1,6 +1,5 @@
 const express = require('express');
 
-
 const app = express()
 
 app.use(express.json())
@@ -11,7 +10,6 @@ app.get('/heartbeat', (req,res,next) => {
 
 // routers
 app.use('/api/users', require('./routes/users'));
-
 
 // catch all error handler
 app.use((err, req, res, next) => {

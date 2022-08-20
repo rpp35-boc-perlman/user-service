@@ -2,3 +2,8 @@ you shoudl create your own version of config.js following this format
 
 ENV=TEST || DEV || PROD
 PORT=0000
+DB_URL= [http://calentodo.database.com]
+DB_USER= [username]
+DB_PASSWORD= [password]
+DB_NAME=[name of database]
+DB_PORT= 0000

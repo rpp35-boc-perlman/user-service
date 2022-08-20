@@ -10,7 +10,7 @@ describe('Server Heartbeat Test', () => {
             const r = await request(app).get('http://localhost:3300/heartbeat')
             expect(r.status).toEqual(200)
         } catch (err) {
-            console.log(err)
+
         }
     }, 5000);
 
