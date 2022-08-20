@@ -55,12 +55,12 @@ describe('User Model Unit Tests', () => {
         const testHash = await user.hashPassword(testData.password)
         const r1 = await user.verifyPassword(testData.password, testHash)
         expect(r1).toBe(true)
-    })
+    }, 10000)
     it('Should be able to fail a incoreect password',  async () => {
         const testHash = await user.hashPassword(testData.password)
         const r2 = await user.verifyPassword('1234', testHash)
         expect(r2).not.toBe(true)
-    })
+    }, 10000)
 
 
 })
