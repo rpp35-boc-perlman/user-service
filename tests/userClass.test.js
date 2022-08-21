@@ -29,7 +29,7 @@ describe('User Model Unit Tests', () => {
         expect(typeof(user.find)).toBe('function')
         expect(typeof(user.findAll)).toBe('function')
         expect(typeof(user.findByIdAndUpdate)).toBe('function')
-        expect(typeof(user.findAndDelete)).toBe('function')
+        expect(typeof(user.findByIdAndDelete)).toBe('function')
     })
     it('Should have required utility methods', () => {
         expect(typeof(user.getColumns)).toBe('function')
