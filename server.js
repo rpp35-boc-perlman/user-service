@@ -4,13 +4,14 @@ const app = express()
 
 app.use(express.json())
 
+
 app.get('/api/heartbeat', (req,res,next) => {
     res.status(200).send('up');
 })
 
 // routers
 app.use('/api/users', require('./routes/users'));
-
+app.use('/api/auth', require('./routes/auth'));
 
 // 404 handler
 app.use((req,res) => {
