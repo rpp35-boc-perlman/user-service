@@ -4,7 +4,6 @@ const app = express()
 
 app.use(express.json())
 
-
 app.get('/api/heartbeat', (req,res,next) => {
     res.status(200).send('up');
 })
@@ -12,6 +11,7 @@ app.get('/api/heartbeat', (req,res,next) => {
 // routers
 app.use('/api/users', require('./routes/users'));
 app.use('/api/auth', require('./routes/auth'));
+app.use('/', require('./routes/proxy'));
 
 // 404 handler
 app.use((req,res) => {
