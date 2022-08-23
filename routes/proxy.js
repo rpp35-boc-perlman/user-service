@@ -10,8 +10,12 @@ var proxy = httpProxy.createProxyServer();
 // proxy passthrough route
 router.get('/', (req,res,next) => {
     console.log(req.headers)
-    const target = `http://${req.headers.host}`
+    const target = `http://${req.headers.target}`
     proxy.web(req, res, {target: target});
+
+    proxy.on('error', (err,req,res) => {
+        next(err)
+    })
 })
 
 
