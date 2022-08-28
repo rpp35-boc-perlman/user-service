@@ -9,7 +9,7 @@ var proxy = httpProxy.createProxyServer();
 
 // proxy passthrough route
 router.get('/', (req,res,next) => {
-    console.log(req.headers)
+    console.log('proxied')
     const target = `http://${req.headers.target}`
     proxy.web(req, res, {target: target});
 
@@ -17,6 +17,16 @@ router.get('/', (req,res,next) => {
         next(err)
     })
 })
+
+router.post('/', (req,res,next) => {
+    console.log('proxied')
+    const target = `http://${req.headers.target}`
+    proxy.web(req, res, {target: target});
+
+    proxy.on('error', (err,req,res) => {
+        next(err)
+    })
+});
 
 
 module.exports = router;

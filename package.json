@@ -8,6 +8,7 @@
     "express-session": "^1.17.3",
     "http-proxy": "^1.18.1",
     "i": "^0.3.7",
+    "morgan": "^1.10.0",
     "npm": "^8.18.0",
     "pg": "^8.7.3"
   },
@@ -18,7 +19,7 @@
     "supertest": "^6.2.4"
   },
   "scripts": {
-    "start": "node www.js",
+    "start": "NODE_ENV=PROD node  www.js",
     "dev": "nodemon NODE_ENV=DEV www.js",
     "test": "jest /tests",
     "coverage": "jest --coverage"

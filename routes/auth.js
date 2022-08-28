@@ -24,7 +24,6 @@ router.post('/login', asyncHandler( async (req, res, next) => {
         if(bool){
             req.session.loggedIn = true
             await req.session.save();
-            console.log(req.session)
             r = response(200, 'Welcome', u);
         } else {
             r = response(401, 'Incorrect Credentials', [])
