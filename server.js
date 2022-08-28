@@ -2,10 +2,13 @@ const express = require('express');
 const session = require('express-session')
 const config = require('dotenv').config
 const routeProtection = require('./middleware/routeProtection')
+const morgan = require('morgan')
 
 const app = express()
 
 if (process.env.NODE_ENV !== 'test') config();
+
+if (process.env.NODE_ENV === 'DEV') app.use(morgan('dev'))
 
 app.use(express.json())
 
@@ -32,9 +35,9 @@ app.get('/api/heartbeat', (req,res,next) => {
 })
 
 // routers
-app.use('/api/users', routeProtection, require('./routes/users'));
+app.use('/api/users', require('./routes/users'));
 app.use('/api/service', require('./routes/auth'));
-app.use('/', require('./routes/proxy'));
+app.use('/', routeProtection, require('./routes/proxy'));
 
 // 404 handler
 app.use((req,res) => {

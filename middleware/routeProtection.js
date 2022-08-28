@@ -2,9 +2,6 @@
 
 module.exports = function routeProtection (req,res,next) {
 
-    console.log(req.session)
-    console.log(req.headers)
-
     if(req.session.loggedIn){
         next()
     } else {
