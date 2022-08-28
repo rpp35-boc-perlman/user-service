@@ -2,6 +2,7 @@
 const Model = require('../lib/model');
 const User = require('../lib/user');
 const {Client} = require('pg');
+const colorGenerator = require('../lib/colorGenerator');
 
 // test database
 const client = new Client({
@@ -17,7 +18,8 @@ describe('User Model Unit Tests', () => {
 
     const testData = {
         user_email: 'test@test.com',
-        password: 'test'
+        password: 'test',
+        color: '#ff0000'
     }
 
     it('Should be a class', () => {
@@ -60,6 +62,9 @@ describe('User Model Unit Tests', () => {
         const r2 = await User.verifyPassword('1234', testHash)
         expect(r2).not.toBe(true)
     }, 10000)
-
+    it('Should be able to generate a random valid hex color', () => {
+        const r = colorGenerator()
+        expect(r).toMatch(/#[a-f0-9]{6}/)
+    })
 
 })
