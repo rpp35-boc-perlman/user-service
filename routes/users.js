@@ -4,13 +4,13 @@ const router = express.Router();
 const User = require('../lib/user');
 const response = require('../lib/response.js');
 const asyncHandler = require('../middleware/asyncHandler');
-
+const routeProtection = require('../middleware/routeProtection');
 
 
 // User Crud Routes
 
 // get all
-router.get('/', asyncHandler( async (req, res, next) => {
+router.get('/', routeProtection, asyncHandler( async (req, res, next) => {
     try {
         const result = await User.findAll()
         const r = response(200, 'success', result)
@@ -22,7 +22,7 @@ router.get('/', asyncHandler( async (req, res, next) => {
 }));
 
 // get one by id
-router.get('/:id', asyncHandler( async (req, res, next) => {
+router.get('/:id', routeProtection,  asyncHandler( async (req, res, next) => {
     const {id} = req.params
     try{
         const result = await User.findById(id)
@@ -35,7 +35,7 @@ router.get('/:id', asyncHandler( async (req, res, next) => {
 }));
 
 //find one by field
-router.get('/find/:field', asyncHandler( async (req, res, next) => {
+router.get('/find/:field', routeProtection,  asyncHandler( async (req, res, next) => {
     const {field} = req.params
     const {value} = req.query
     try{
@@ -62,7 +62,7 @@ router.post('/', asyncHandler ( async (req, res, next) => {
 }));
 
 // update one
-router.patch('/:id', asyncHandler( async (req, res, next) => {
+router.patch('/:id', routeProtection, asyncHandler( async (req, res, next) => {
     const {id} = req.params
     const {password} = req.body
     try{
@@ -76,7 +76,7 @@ router.patch('/:id', asyncHandler( async (req, res, next) => {
 }));
 
 // delete one
-router.delete('/:id', asyncHandler( async (req, res, next) => {
+router.delete('/:id', routeProtection, asyncHandler( async (req, res, next) => {
     const {id} = req.params
     try {
         const result = await User.findByIdAndDelete(id)
