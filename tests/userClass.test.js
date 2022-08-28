@@ -38,15 +38,15 @@ describe('User Model Unit Tests', () => {
         expect(typeof(User.generatePlaceholders)).toBe('function')
     })
     it('getColumns should return requested columns from data provided', () => {
-        expect(User.getColumns(testData)).toEqual(['user_email', 'password'])
+        expect(User.getColumns(testData)).toEqual(['user_email', 'password', 'color'])
     })
     it('getValues should reutn requested values from data provided', () => {
-        expect(User.getValues(testData)).toEqual(['test@test.com', 'test'])
+        expect(User.getValues(testData)).toEqual(['test@test.com', 'test', '#ff0000'])
     })
     it('generatePlacehoders should return currect number of placeholder for data provided', () => {
         const r = User.generatePlaceholders(testData)
-        expect(r.length).toEqual(2)
-        expect(r).toEqual(['$1', "$2"])
+        expect(r.length).toEqual(3)
+        expect(r).toEqual(['$1', "$2", "$3"])
     })
     it('Should be able to hash a password', async () => {
         const testHash = await User.hashPassword(testData.password)
