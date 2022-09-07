@@ -23,6 +23,7 @@ router.post('/login', asyncHandler( async (req, res, next) => {
 
         if(bool){
             req.session.loggedIn = true
+            req.session.user = {id: u.user_id}
             await req.session.save();
             r = response(200, 'Welcome', u);
         } else {

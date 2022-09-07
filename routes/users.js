@@ -1,11 +1,27 @@
 // User service router
 const express = require('express');
 const router = express.Router();
+
 const User = require('../lib/user');
 const response = require('../lib/response.js');
 const asyncHandler = require('../middleware/asyncHandler');
 const routeProtection = require('../middleware/routeProtection');
 
+
+// me - return current user
+router.get('/me', routeProtection, asyncHandler( async (req, res, next) => {
+    try{
+        const {id} = req.session.user;
+        const u = await User.findById(id);
+        // only pull info from the first user found (there should not be mutiple btw)
+        const {user_id, user_email, color} = u[0]
+        const userInfo = {user_id, user_email, color}
+        const r = response(200, 'User Found', userInfo);
+        res.status(r.status).json(r);
+    } catch (err) {
+        next(err)
+    }
+}));
 
 // User Crud Routes
 
@@ -88,6 +104,7 @@ router.delete('/:id', routeProtection, asyncHandler( async (req, res, next) => {
         res.status(500).json(r)
     }
 }));
+
 
 
 module.exports = router;

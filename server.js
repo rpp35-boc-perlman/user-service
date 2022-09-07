@@ -50,10 +50,11 @@ app.use((req,res) => {
 // catch all error handler
 app.use((err, req, res, next) => {
     console.log('Error: '.red, err.message)
-    res.status(500).json({
-        status: 500,
+    const stat = err.status || 500
+    res.status(stat).json({
+        status: stat,
         message: "An Error Occured",
-        error: err
+        error: err.message
     })
 })
 
