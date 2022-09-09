@@ -105,6 +105,18 @@ router.delete('/:id', routeProtection, asyncHandler( async (req, res, next) => {
     }
 }));
 
+// currently logged in user
+router.get('/me', asyncHandler( async (req, res, next) => {
+    const {id} = req.user
+    try {
+        const result = await User.findById(id)
+        const r = response(200, 'success', result)
+        res.status(r.status).json(r)
+    } catch (err) {
+        const r = response(err.status, err, [], err)
+        res.status(r.status).json(r)
+    }
+}));
 
 
 module.exports = router;

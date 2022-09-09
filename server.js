@@ -26,7 +26,7 @@ const sessionConfig = {
     resave: false,
     cookie: {
         secure: false,
-        maxAge: 60000
+        maxAge: 60000 * 60
     }
 }
 
@@ -47,7 +47,7 @@ app.use((req,res) => {
     res.status(404).send(`Not Found ${req.path}`)
 })
 
-// catch all error handler
+// catch all error handlerœ
 app.use((err, req, res, next) => {
     console.log('Error: '.red, err.message)
     const stat = err.status || 500
